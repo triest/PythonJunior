@@ -2,11 +2,11 @@ import hashlib
 import hmac
 from operator import itemgetter
 
-from hyperquant.api import Platform, Sorting, Interval, Direction, OrderType
-from hyperquant.clients import WSClient, Endpoint, Trade, Error, ErrorCode, \
-    ParamName, WSConverter, RESTConverter, PrivatePlatformRESTClient, MyTrade, Candle, Ticker, OrderBookItem, Order, \
+from hqlib.hyperquant.api import Platform, Sorting, Interval, Direction, OrderType
+from hqlib.hyperquant.clients import WSClient, Trade, Error, \
+    WSConverter, RESTConverter, PrivatePlatformRESTClient, MyTrade, Candle, Ticker, OrderBookItem, Order, \
     OrderBook, Account, Balance
-
+from hqlib.hyperquant.api import ErrorCode, Endpoint, ParamName
 
 # REST
 

@@ -2,16 +2,17 @@ import hashlib
 import hmac
 import time
 
-from hyperquant.api import Platform, Sorting, Direction
-from hyperquant.clients import Endpoint, WSClient, Trade, ParamName, Error, \
-    ErrorCode, Channel, \
+from hqlib.hyperquant.api import Platform, Sorting, Direction
+from hqlib.hyperquant.clients import WSClient, Trade, Error, Channel, \
     Info, WSConverter, RESTConverter, PlatformRESTClient, PrivatePlatformRESTClient
-
+from hqlib.hyperquant.api import ErrorCode, Endpoint, ParamName
 
 # https://docs.bitfinex.com/v1/docs
 # https://docs.bitfinex.com/v2/docs
 
 # REST
+from hqlib import hyperquant
+
 
 class BitfinexRESTConverterV1(RESTConverter):
     # Main params:
@@ -216,14 +217,14 @@ class BitfinexRESTClient(PrivatePlatformRESTClient):
 
     # v1: Same as fetch_trades(), but result can be only reduced, but not extended
     def fetch_trades_history(self, symbol, limit=None, from_item=None,
-                           sorting=None, from_time=None, to_time=None, **kwargs):
+                             sorting=None, from_time=None, to_time=None, **kwargs):
         if from_item and self.version == "1":
             # todo check
             self.logger.warning("Bitfinex v1 API has no trades-history functionality.")
             return None
         # return self.fetch_trades(symbol, limit, **kwargs)
         return super().fetch_trades_history(symbol, limit, from_item, sorting=sorting,
-                                          from_time=from_time, to_time=to_time, **kwargs)
+                                            from_time=from_time, to_time=to_time, **kwargs)
 
     def _on_response(self, response, result):
         # super()._on_response(response)
@@ -676,7 +677,6 @@ class BitfinexWSClient(WSClient):
                    "authPayload": auth_payload, "authNonce": auth_nonce}
 
         self._send(payload)
-
 
 # # Auth v1:
 # import hmac

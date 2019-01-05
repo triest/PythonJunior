@@ -4,9 +4,10 @@ import json
 import time
 import urllib
 
-from hyperquant.api import Platform, Sorting, Direction
-from hyperquant.clients import WSClient, Trade, Error, ErrorCode, Endpoint, \
-    ParamName, WSConverter, RESTConverter, PlatformRESTClient, PrivatePlatformRESTClient, ItemObject
+from hqlib.hyperquant.api import Platform, Sorting, Direction
+from hqlib.hyperquant.clients import WSClient, Trade, Error, WSConverter, RESTConverter, PlatformRESTClient, \
+    PrivatePlatformRESTClient, ItemObject
+from hqlib.hyperquant.api import ErrorCode, Endpoint, ParamName
 
 
 # REST
@@ -72,7 +73,7 @@ class BitMEXRESTConverterV1(RESTConverter):
     error_code_by_http_status = {
         400: ErrorCode.WRONG_PARAM,
         401: ErrorCode.UNAUTHORIZED,
-        429: ErrorCode.RATE_LIMIT,  #?
+        429: ErrorCode.RATE_LIMIT,  # ?
     }
 
     # For converting time
@@ -165,12 +166,12 @@ class BitMEXRESTClient(PrivatePlatformRESTClient):
 
     # If symbol not specified all symbols will be returned
     def fetch_trades_history(self, symbol=None, limit=None, from_item=None,
-                           sorting=None, from_time=None, to_time=None, **kwargs):
+                             sorting=None, from_time=None, to_time=None, **kwargs):
         # Note: from_item used automatically for paging; from_time and to_time - used for custom purposes
         return super().fetch_trades_history(symbol, limit, from_item, sorting=sorting,
-                                          from_time=from_time, to_time=to_time, **kwargs)
+                                            from_time=from_time, to_time=to_time, **kwargs)
 
-    # tickers are in instruments
+        # tickers are in instruments
 
 
 # WebSockets
@@ -220,6 +221,7 @@ class BitMEXWSConverterV1(WSConverter):
 
     # For converting time
     is_source_in_timestring = True
+
     # timestamp_platform_names = []
 
     def parse(self, endpoint, data):

@@ -10,7 +10,7 @@ import requests
 from dateutil import parser
 from websocket import WebSocketApp
 
-from hyperquant.api import ParamName, ParamValue, ErrorCode, Endpoint, Platform, Sorting, OrderType
+from hqlib.hyperquant.api import ParamName, ParamValue, ErrorCode, Endpoint, Platform, Sorting, OrderType
 
 """
 API clients for various trading platforms: REST and WebSocket.

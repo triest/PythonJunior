@@ -1,9 +1,9 @@
 from django.conf import settings
 
-from hyperquant.api import Platform
-from hyperquant.clients.binance import BinanceRESTClient, BinanceWSClient
-from hyperquant.clients.bitfinex import BitfinexRESTClient, BitfinexWSClient
-from hyperquant.clients.bitmex import BitMEXRESTClient, BitMEXWSClient
+from hqlib.hyperquant.api import Platform
+from hqlib.hyperquant.clients.binance import BinanceRESTClient, BinanceWSClient
+from hqlib.hyperquant.clients.bitfinex import BitfinexRESTClient, BitfinexWSClient
+from hqlib.hyperquant.clients.bitmex import BitMEXRESTClient, BitMEXWSClient
 
 # temp
 # if not settings.configured:
